@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace LightningFastWordFinder
 {
@@ -6,7 +7,19 @@ namespace LightningFastWordFinder
     {
         public string GetLongestWord(string text)
         {
-            return "longestWord";
+            string[] words = text.Split(' ');
+            string result = "";
+            foreach (var word in words)
+            {
+                if (Regex.IsMatch(word, @"^[a-zA-Z]+$"))
+                {
+                    if (word.Length > result.Length)
+                    {
+                        result = word;
+                    }
+                }
+            }
+            return result;
         }
     }
 }
